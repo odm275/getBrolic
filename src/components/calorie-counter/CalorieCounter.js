@@ -19,12 +19,12 @@ class CalorieCounter extends Component {
   }
   //  f = f+c
   static BMR({
-    weightHistory, // constant
-    ftHeight, //  constant
-    inHeight, //  constant
-    dateOfBirth, // constant
-    gender, //  constant
-    activityLevel //  constant
+    weightHistory,
+    ftHeight,
+    inHeight,
+    dateOfBirth,
+    gender,
+    activityLevel
   }) {
     //  BMR
     //  MEN = 66 + ( 6.2 × weight in pounds ) + ( 12.7 × height in inches ) – ( 6.76 × age in years )
