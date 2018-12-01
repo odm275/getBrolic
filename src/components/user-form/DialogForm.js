@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Auth from "../auth/Auth";
-import classNames from "classnames";
-import Moment from "moment";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from 'react'
+import Auth from '../auth/Auth'
+import classNames from 'classnames'
+import Moment from 'moment'
+import { withStyles } from '@material-ui/core/styles'
 import {
   Paper,
   FormControl,
@@ -18,102 +18,101 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle
-} from "@material-ui/core";
-import { activityRange, heightFtRange, heightInRange } from "./FormOptions"; // Selectors to fill in form field
-import { setLocalStorageItems } from "../../helpers/localStorage"; // Helper to set to local Storage
-import { isEmpty } from "../../helpers/isEmpty"; //Helper Checks if Object is empty
+} from '@material-ui/core'
+import { activityRange, heightFtRange, heightInRange } from './FormOptions' // Selectors to fill in form field
+import { isEmpty } from '../../helpers/isEmpty' //Helper Checks if Object is empty
 
 const styles = theme => ({
   root: {
-    flexWrap: "wrap",
+    flexWrap: 'wrap',
     padding: theme.spacing.unit * 5
   },
   margin: {
-    display: "flex",
+    display: 'flex',
     margin: theme.spacing.unit
   },
 
   textField: {
-    flexBasis: "100%"
+    flexBasis: '100%'
   },
   subTextField: {
-    flexBasis: "40%"
+    flexBasis: '40%'
   }
-});
+})
 
 class DialogForm extends Component {
   initialState = {
     fields: {
-      gender: "male",
-      dateOfBirth: "",
-      ftHeight: "",
-      inHeight: "",
-      lbsCurrentWeight: "",
-      activityLevel: ""
+      gender: 'male',
+      dateOfBirth: '',
+      ftHeight: '',
+      inHeight: '',
+      lbsCurrentWeight: '',
+      activityLevel: ''
     },
     fieldErrors: {},
     open: true
-  };
-  state = this.initialState;
+  }
+  state = this.initialState
 
   handleChange = name => e => {
-    const fields = this.state.fields;
-    fields[name] = e.target.value;
-    this.setState({ fields });
-  };
+    const fields = this.state.fields
+    fields[name] = e.target.value
+    this.setState({ fields })
+  }
   // ToDo: Some more validations could be done here
   validation(person) {
-    const errors = {};
+    const errors = {}
     if (!person.dateOfBirth || Moment(person.dateOfBirth) > Moment())
-      errors.dateOfBirthError = "Please Enter a Valid Date";
+      errors.dateOfBirthError = 'Please Enter a Valid Date'
     if (!person.ftHeight) {
-      errors.ftHeightError = "Please Enter a Height in ft.";
+      errors.ftHeightError = 'Please Enter a Height in ft.'
     }
     if (!person.inHeight) {
-      errors.inHeightError = "Please enter a Height in in.";
+      errors.inHeightError = 'Please enter a Height in in.'
     }
     if (!person.lbsCurrentWeight) {
-      errors.lbsCurrentWeightError = "Please enter your current weight";
+      errors.lbsCurrentWeightError = 'Please enter your current weight'
     }
     if (!person.activityLevel) {
-      errors.activityLevelError = "Please enter how active you are";
+      errors.activityLevelError = 'Please enter how active you are'
     }
-    return errors;
+    return errors
   }
   // Close Dialog
   close = () => {
-    this.setState({ open: false });
-  };
+    this.setState({ open: false })
+  }
 
-  submit = () => {
-    const fieldErrors = this.validation(this.state.fields);
+  submit = authFunction => {
+    const fieldErrors = this.validation(this.state.fields)
     if (!isEmpty(fieldErrors)) {
-      this.setState({ fieldErrors });
-      return;
+      this.setState({ fieldErrors })
+      return
     }
-    const fields = this.state.fields;
+    const fields = this.state.fields
+    // create history and add first weight
     fields.weightHistory = [
       {
         data: fields.lbsCurrentWeight,
-        date: Moment().format("YYYY-MM-DD")
+        date: Moment().format('YYYY-MM-DD')
       }
-    ];
-    delete fields.lbsCurrentWeight;
-    setLocalStorageItems(fields);
-    this.close();
-  };
+    ]
+    delete fields.lbsCurrentWeight
+    authFunction(fields)
+    this.close()
+  }
 
   // On Submit Execute both our local submit and the context's change auth to true.
   getSubmitProps = ({ onClick, ...props }) => {
     return {
       //re-wiring onClick
-      onClick: (...args) => {
-        onClick && onClick(...args);
-        this.submit();
+      onClick: () => {
+        this.submit(onClick)
       },
       ...props
-    };
-  };
+    }
+  }
 
   render() {
     const {
@@ -138,7 +137,7 @@ class DialogForm extends Component {
       props: { classes },
       handleChange,
       getSubmitProps
-    } = this;
+    } = this
 
     return (
       <Dialog open={open} aria-labelledby="form-dialog-title">
@@ -156,7 +155,7 @@ class DialogForm extends Component {
               aria-label="gender"
               name="gender1"
               value={gender}
-              onChange={handleChange("gender")}
+              onChange={handleChange('gender')}
             >
               <FormControlLabel
                 value="female"
@@ -178,7 +177,7 @@ class DialogForm extends Component {
             helperText={dateOfBirthError}
             fullWidth
             value={dateOfBirth}
-            onChange={handleChange("dateOfBirth")}
+            onChange={handleChange('dateOfBirth')}
             InputLabelProps={{ shrink: true }}
             className={classNames(classes.margin, classes.textField)}
             type="date"
@@ -191,7 +190,7 @@ class DialogForm extends Component {
             helperText={ftHeightError}
             className={classNames(classes.margin, classes.subTextField)}
             value={ftHeight}
-            onChange={handleChange("ftHeight")}
+            onChange={handleChange('ftHeight')}
             InputProps={{
               endAdornment: <InputAdornment position="end">in</InputAdornment>
             }}
@@ -209,7 +208,7 @@ class DialogForm extends Component {
             helperText={inHeightError}
             className={classNames(classes.margin, classes.subTextField)}
             value={inHeight}
-            onChange={handleChange("inHeight")}
+            onChange={handleChange('inHeight')}
             InputProps={{
               endAdornment: <InputAdornment position="end">in</InputAdornment>
             }}
@@ -230,7 +229,7 @@ class DialogForm extends Component {
             className={classNames(classes.margin, classes.textField)}
             type="number"
             value={lbsCurrentWeight}
-            onChange={handleChange("lbsCurrentWeight")}
+            onChange={handleChange('lbsCurrentWeight')}
             InputProps={{
               endAdornment: <InputAdornment position="end">lbs</InputAdornment>
             }}
@@ -243,7 +242,7 @@ class DialogForm extends Component {
             helperText={activityLevelError}
             className={classNames(classes.margin, classes.textField)}
             value={activityLevel}
-            onChange={handleChange("activityLevel")}
+            onChange={handleChange('activityLevel')}
           >
             {activityRange.map(option => (
               <MenuItem key={option.value} value={option.value}>
@@ -253,11 +252,11 @@ class DialogForm extends Component {
           </TextField>
           <DialogActions>
             <Auth.Consumer>
-              {({ changeAuthTrue }) => (
+              {({ authenticate }) => (
                 <Button
                   {...getSubmitProps({
-                    onClick: changeAuthTrue,
-                    id: "custom-button-id"
+                    onClick: authenticate,
+                    id: 'custom-button-id'
                   })}
                 >
                   Save Settings
@@ -267,8 +266,8 @@ class DialogForm extends Component {
           </DialogActions>
         </Paper>
       </Dialog>
-    );
+    )
   }
 }
 
-export default withStyles(styles)(DialogForm);
+export default withStyles(styles)(DialogForm)

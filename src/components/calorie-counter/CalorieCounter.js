@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { withAuth } from '../auth/Auth'
 import moment from 'moment'
 
@@ -8,7 +8,7 @@ import moment from 'moment'
 
 //  PureComponent: We're going with a pure component since it only renders if the props coming in are different from previous ones aka a shallow render. We still
 //  end up calculating a new set of props, but that's fine unless the history of calories is really big. (https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization)
-class CalorieCounter extends PureComponent {
+class CalorieCounter extends Component {
   initialState = {
     currentDate: moment().format('YYYY-MM-DD')
   }
@@ -64,6 +64,8 @@ class CalorieCounter extends PureComponent {
       props: { userInfo },
       handleChangeDate
     } = this
+    console.log('userInfo')
+    console.log(userInfo)
     const BMR = CalorieCounter.BMR(userInfo)
     const caloriesConsumedThisDay = CalorieCounter.caloriesConsumedThisDay(
       userInfo.caloriesHistory || [],

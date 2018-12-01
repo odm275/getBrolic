@@ -1,6 +1,5 @@
 import React from 'react'
 import { withAuth } from '../auth/Auth'
-import moment from 'moment'
 import ResponsiveContainer from 'recharts/lib/component/ResponsiveContainer'
 import LineChart from 'recharts/lib/chart/LineChart'
 import Line from 'recharts/lib/cartesian/Line'
@@ -10,21 +9,9 @@ import CartesianGrid from 'recharts/lib/cartesian/CartesianGrid'
 import Tooltip from 'recharts/lib/component/Tooltip'
 import Legend from 'recharts/lib/component/Legend'
 
-const data = [{ name: 'Mon', Visits: 2200 }, { name: 'Wed', Visits: 5000 }]
-
 //Get the day for today, and go a week in the future.
 
 //By Week counting from today, we're going filter...
-
-const createDays = (start, end) => {
-  var days = []
-  var day = start
-  while (day <= end) {
-    days.push(day.format('YYYY-MM-DD'))
-    day = day.clone().add(1, 'd')
-  }
-  return days
-}
 
 const weightByDate = history =>
   Object.entries(
@@ -60,7 +47,6 @@ function SimpleLineChart({ userInfo: { weightHistory }, timeRange }) {
   const weightsByDay = weightByDate(weightHistory)
   const weightTotalByDay = totalWeightPerDay(weightsByDay)
   const graphData = generateGraph(timeRange, weightTotalByDay)
-  console.log(graphData)
   return (
     <ResponsiveContainer width="99%" height={320}>
       <LineChart data={graphData}>

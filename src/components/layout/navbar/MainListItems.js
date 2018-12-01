@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import CalorieCounterIcon from "@material-ui/icons/Restaurant";
-import WeightTrackerIcon from "@material-ui/icons/NoteAddSharp";
+import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
+import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import CalorieCounterIcon from '@material-ui/icons/Restaurant'
+import WeightTrackerIcon from '@material-ui/icons/NoteAddSharp'
 
 //  Want to match each route to the right secondary menu(listitems):
 
 export default function mainListItems(props) {
   return (
     <Fragment>
-      <Link to="/">
+      <Link to="/" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <DashboardIcon />
@@ -18,7 +18,7 @@ export default function mainListItems(props) {
           <ListItemText primary="Dashboard" />
         </ListItem>
       </Link>
-      <Link to="/calorie-counter">
+      <Link to="/calorie-counter" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <CalorieCounterIcon />
@@ -26,7 +26,7 @@ export default function mainListItems(props) {
           <ListItemText primary="Calorie Counter" />
         </ListItem>
       </Link>
-      <Link to="weight-tracker">
+      <Link to="weight-tracker" style={{ textDecoration: 'none' }}>
         <ListItem button>
           <ListItemIcon>
             <WeightTrackerIcon />
@@ -35,5 +35,5 @@ export default function mainListItems(props) {
         </ListItem>
       </Link>
     </Fragment>
-  );
+  )
 }

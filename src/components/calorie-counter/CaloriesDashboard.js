@@ -58,14 +58,19 @@ function Goal({ BMR, caloriesConsumedThisDay }) {
 export function CaloriesSummaryCard() {
   return (
     <CalorieCounter>
-      {props => {
+      {({ BMR, caloriesConsumedThisDay }) => {
         return (
           <SummaryCard
             size={400}
-            goal={props.BMR}
-            consumed={props.caloriesConsumedThisDay}
+            goal={BMR}
+            consumed={caloriesConsumedThisDay}
             logistics={Logistics}
-            goalDescription={<Goal {...props} />}
+            goalDescription={
+              <Goal
+                BMR={BMR}
+                caloriesConsumedThisDay={caloriesConsumedThisDay}
+              />
+            }
           />
         )
       }}

@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { withRouter } from "react-router-dom";
+import React, { Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 import {
   ListItem,
   ListItemIcon,
@@ -12,11 +12,13 @@ import {
   DialogActions,
   TextField,
   DialogContentText
-} from "@material-ui/core";
-import AssignmentIcon from "@material-ui/icons/Assignment";
-import Auth from "../../auth/Auth";
-import DialogController from "../../user-form/DialogController";
-import { toCamelCase } from "../../../helpers/camelCase";
+} from '@material-ui/core'
+import AssignmentIcon from '@material-ui/icons/Assignment'
+import Auth from '../../auth/Auth'
+import DialogController from '../../user-form/DialogController'
+import { toCamelCase } from '../../../helpers/camelCase'
+
+//Menus Below that are below Options
 
 function WeightTrackerMenu() {
   return (
@@ -69,10 +71,10 @@ function WeightTrackerMenu() {
               </DialogActions>
             </Dialog>
           </Fragment>
-        );
+        )
       }}
     </DialogController>
-  );
+  )
 }
 
 function CalorieCounterMenu() {
@@ -124,26 +126,26 @@ function CalorieCounterMenu() {
               </DialogActions>
             </Dialog>
           </Fragment>
-        );
+        )
       }}
     </DialogController>
-  );
+  )
 }
 
 const Menus = {
   weightTracker: <WeightTrackerMenu />,
   calorieCounter: <CalorieCounterMenu />
-};
+}
 
 // Match the corresponding tab to the correct menu.
 export default withRouter(function SecondaryListItems({
   location: { pathname }
 }) {
-  const pathId = toCamelCase(pathname);
+  const pathId = toCamelCase(pathname)
   return (
     <Fragment>
       <ListSubheader inset>Options</ListSubheader>
       {Menus[pathId]}
     </Fragment>
-  );
-});
+  )
+})

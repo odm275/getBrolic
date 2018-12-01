@@ -5,6 +5,7 @@ import {
   getLocalStorageItems,
   setLocalStorageItems
 } from '../../helpers/localStorage'
+
 import { isEmpty } from '../../helpers/isEmpty'
 
 const AuthContext = React.createContext({
@@ -18,8 +19,10 @@ class Auth extends Component {
   static Consumer = AuthContext.Consumer
   //  Control State Pattern
   //  Ex: When submitting DialogForm
-  changeAuthTrue = () => {
-    this.setState({ isAuth: true })
+  authenticate = userInfo => {
+    this.setState({ isAuth: true, userInfo: userInfo }, () =>
+      setLocalStorageItems(userInfo)
+    )
   }
 
   //  REMINDER: IF IT REFERENCES STATE TO BUILD UPON THE NEXT UPDATE OF STATE, USE CALLBACK FUNCTIONAL UPDATE TO MAKE SURE YOU ARE GETTING
@@ -38,10 +41,9 @@ class Auth extends Component {
       () => setLocalStorageItems(this.state.userInfo)
     )
   }
-
   initalState = {
     isAuth: !isEmpty(getLocalStorageItems()),
-    changeAuthTrue: this.changeAuthTrue,
+    authenticate: this.authenticate,
     userInfo: !isEmpty(getLocalStorageItems()) ? getLocalStorageItems() : null,
     weightGoal: 160, // ??????????????????????
     addWeightHistory: this.addDataHistory('weightHistory'),
@@ -50,6 +52,10 @@ class Auth extends Component {
   state = this.initalState
 
   render() {
+    console.log('auth')
+    console.log(this.state.isAuth)
+    console.log('userInfo')
+    console.log(this.state.userInfo)
     return (
       <AuthContext.Provider value={this.state}>
         {this.props.children}

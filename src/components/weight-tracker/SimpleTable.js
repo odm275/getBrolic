@@ -1,5 +1,4 @@
 import React from 'react'
-import Auth from '../auth/Auth'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Table from '@material-ui/core/Table'
