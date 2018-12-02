@@ -18,7 +18,7 @@ function SummaryCard({ goalDescription, goal, consumed, classes, size }) {
     <Paper style={{ width: size }}>
       <Grid container justify="space-evenly">
         <Grid container direction="column">
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item>
             <Grid item className={classes.marginTop}>
               {goalDescription}
             </Grid>
