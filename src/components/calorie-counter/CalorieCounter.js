@@ -64,8 +64,7 @@ class CalorieCounter extends Component {
       props: { userInfo },
       handleChangeDate
     } = this
-    console.log('userInfo')
-    console.log(userInfo)
+
     const BMR = CalorieCounter.BMR(userInfo)
     const caloriesConsumedThisDay = CalorieCounter.caloriesConsumedThisDay(
       userInfo.caloriesHistory || [],

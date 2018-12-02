@@ -21,19 +21,6 @@ const styles = theme => ({
   }
 })
 
-//  Last Weight in History
-function Logistics() {
-  return (
-    <CalorieCounter>
-      <Typography>
-        *insert pounds up or down* of progress: 137 lbs
-        <span>Current Weight</span>
-        <span>Edit</span>
-      </Typography>
-    </CalorieCounter>
-  )
-}
-
 //  Consummed is going be the calories consummed that day.
 //  Calories Left: BMR - Consummed
 function Goal({ BMR, caloriesConsumedThisDay }) {
@@ -64,7 +51,6 @@ export function CaloriesSummaryCard() {
             size={400}
             goal={BMR}
             consumed={caloriesConsumedThisDay}
-            logistics={Logistics}
             goalDescription={
               <Goal
                 BMR={BMR}

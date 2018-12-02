@@ -52,10 +52,6 @@ class Auth extends Component {
   state = this.initalState
 
   render() {
-    console.log('auth')
-    console.log(this.state.isAuth)
-    console.log('userInfo')
-    console.log(this.state.userInfo)
     return (
       <AuthContext.Provider value={this.state}>
         {this.props.children}

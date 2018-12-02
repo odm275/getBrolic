@@ -25,19 +25,6 @@ const styles = theme => ({
   }
 })
 
-//  Last Weight in History
-function Logistics() {
-  return (
-    <div>
-      <Typography>
-        *insert pounds up or down* of progress: 137 lbs
-        <span>Current Weight</span>
-        <span>Edit</span>
-      </Typography>
-    </div>
-  )
-}
-
 function Goal({ currentWeight, goal }) {
   const percentage = Math.round((currentWeight / goal) * 100)
 
@@ -61,7 +48,6 @@ export function WeightSummaryCard(props) {
         const currentWeight = weightHistory[currentWeightIndex - 1].data
         return (
           <SummaryCard
-            logistics={Logistics}
             goalDescription={
               <Goal goal={weightGoal} currentWeight={currentWeight} />
             }
@@ -101,7 +87,7 @@ class WeightTracker extends Component {
                   </MenuItem>
                 ))}
               </TextField>
-              <Typography variant="h4" gutterBottom>
+              <Typography component="h4" gutterBottom>
                 Weight per Range
               </Typography>
               <Typography component="div" className={classes.chartContainer}>
