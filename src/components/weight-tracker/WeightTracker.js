@@ -43,10 +43,10 @@ function Goal({ currentWeight, goal }) {
 
   return (
     <Fragment>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="title" gutterBottom>
         To reach your weight goal
       </Typography>
-      <Typography variant="h4" component="h4" gutterBottom color="primary">
+      <Typography variant="title" component="h4" gutterBottom color="primary">
         {percentage}%
       </Typography>
     </Fragment>
@@ -111,7 +111,7 @@ class WeightTracker extends Component {
                 />
               </Typography>
               <Typography variant="h4" gutterBottom>
-                WeightLogs
+                Weight Logs
               </Typography>
               <div className={classes.tableContainer}>
                 <SimpleTable weightHistory={weightHistory} />
