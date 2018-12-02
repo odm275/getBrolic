@@ -124,7 +124,7 @@ class NavBar extends Component {
                 noWrap
                 className={classes.title}
               >
-                Dashboard
+                Get Brolic
               </Typography>
               <IconButton color="inherit" />
             </Toolbar>
