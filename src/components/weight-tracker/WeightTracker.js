@@ -43,7 +43,7 @@ function Goal({ currentWeight, goal }) {
 
   return (
     <Fragment>
-      <Typography ariant="h3" gutterBottom>
+      <Typography variant="h3" gutterBottom>
         To reach your weight goal
       </Typography>
       <Typography variant="h3" component="h3" gutterBottom color="primary">

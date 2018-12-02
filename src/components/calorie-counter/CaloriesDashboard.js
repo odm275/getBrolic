@@ -39,18 +39,10 @@ function Logistics() {
 function Goal({ BMR, caloriesConsumedThisDay }) {
   return (
     <div className="goal">
-      <Typography variant="h3" gutterBottom>
-        Calories Left
-      </Typography>
-      <Typography component="h3" variant="h3" color="primary">
-        {BMR - caloriesConsumedThisDay}
-      </Typography>
-      <Typography variant="h3" gutterBottom>
-        Calories Consummed
-      </Typography>
-      <Typography component="h3" variant="h3" color="primary">
-        {caloriesConsumedThisDay}
-      </Typography>
+      <Typography gutterBottom>Calories Left</Typography>
+      <Typography color="primary">{BMR - caloriesConsumedThisDay}</Typography>
+      <Typography gutterBottom>Calories Consummed</Typography>
+      <Typography color="primary">{caloriesConsumedThisDay}</Typography>
     </div>
   )
 }
