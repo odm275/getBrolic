@@ -20,6 +20,7 @@ class Auth extends Component {
   //  Control State Pattern
   //  Ex: When submitting DialogForm
   authenticate = userInfo => {
+    console.log(userInfo)
     this.setState({ isAuth: true, userInfo: userInfo }, () =>
       setLocalStorageItems(userInfo)
     )

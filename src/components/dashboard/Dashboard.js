@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'
-import DialogForm from '../user-form/DialogForm'
+import Form from '../user-form/Form'
 import Auth from '../auth/Auth'
 import { CaloriesSummaryCard } from '../calorie-counter/CaloriesDashboard'
 import { WeightSummaryCard } from '../weight-tracker/WeightTracker'
@@ -35,7 +35,7 @@ class Dashboard extends Component {
               </div>
             </main>
           ) : (
-            <DialogForm />
+            <Form />
           )
         }}
       </Auth.Consumer>
